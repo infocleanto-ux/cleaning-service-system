@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLEANTO | 高品質ハウスクリーニング</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --color-main: #2C3E50; /* ディープネイビー */
+            --color-accent: #D4AF37; /* ゴールド */
+            --color-bg-white: #FFFFFF;
+            --color-bg-light: #F8F9FA;
+            --color-text: #333333;
+            --color-text-light: #666666;
+            --font-family: 'Noto Sans JP', sans-serif;
+            --content-width: 1100px;
+            --header-height: 80px;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--color-text);
+            line-height: 1.8;
+            background-color: var(--color-bg-white);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Common Classes */
+        .container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        .bg-light {
+            background-color: var(--color-bg-light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--color-main);
+            margin-bottom: 4rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-accent);
+            margin: 20px auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-accent {
+            background-color: var(--color-accent);
+            color: #fff;
+            border: 1px solid var(--color-accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #fff;
+            color: var(--color-accent);
+        }
+
+        .btn-main {
+            background-color: var(--color-main);
+            color: #fff;
+            border: 1px solid var(--color-main);
+        }
+
+        .btn-main:hover {
+            background-color: #fff;
+            color: var(--color-main);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-main);
+            border: 1px solid var(--color-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-main);
+            color: #fff;
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background-color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: none;
+        }
+
+        header.scrolled .logo,
+        header.scrolled .nav-links a {
+            color: var(--color-main);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #fff;
+            transition: color 0.4s ease;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.4s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .header-cta {
+            background-color: var(--color-accent);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-cta:hover {
+            opacity: 0.8;
+            color: #fff;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--color-main);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        header:not(.scrolled) .hamburger span {
+            background-color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* 人のいない清潔感のあるリビングの画像 */
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 62, 80, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #fff;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            opacity: 0.9;
+        }
+
+        /* Mission Section */
+        .mission {
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        .mission-lead {
+            font-size: 1.8rem;
+            color: var(--color-main);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            line-height: 1.6;
+        }
+
+        .mission-text {
+            font-size: 1.05rem;
+            color: var(--color-text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 2.2;
+            letter-spacing: 0.05em;
+        }
+
+        /* Reasons Section */
+        .reasons {
+            padding: 120px 0;
+        }
+
+        .reasons-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+
+        .reason-card {
+            background: #fff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .reason-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 40px 0 0;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            color: var(--color-accent);
+        }
+
+        .reason-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke-width: 1.5;
+        }
+        
+        .reason-content {
+            flex-grow: 1;
+        }
+
+        .reason-title {
+            font-size: 1.3rem;
+            color: var(--color-main);
+            margin-bottom: 15px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .reason-desc {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            border: 1px solid #EAEAEA;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-info {
+            padding: 40px 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-name {
+            font-size: 1.4rem;
+            color: var(--color-main);
+            margin-bottom: 10px;
+            font-weight: 500;
+            border-bottom: 1px solid #EAEAEA;
+            padding-bottom: 15px;
+        }
+
+        .service-price-wrap {
+            margin: 20px 0;
+        }
+
+        .service-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .service-price-label {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+        }
+
+        .service-price {
+            font-size: 1.4rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .service-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .service-time {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: auto;
+            text-align: right;
+        }
+
+        /* Discount Banner */
+        .discount-banner {
+            background-color: var(--color-main);
+            color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discount-banner::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+        }
+
+        .discount-title {
+            color: var(--color-accent);
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .discount-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .discount-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .discount-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+        }
+
+        .discount-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Flow Section */
+        .flow {
+            padding: 120px 0;
+        }
+
+        .flow-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .flow-step {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .flow-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 30px;
+            width: 1px;
+            height: calc(100% - 20px);
+            background-color: #ddd;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-main);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .step-content {
+            padding-left: 30px;
+            padding-top: 15px;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            color: var(--color-main);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 120px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #EAEAEA;
+            border-radius: 4px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+            color: var(--color-main);
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #fafafa;
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+
+        .faq-icon::before, .faq-icon::after {
+            content: '';
+            position: absolute;
+            background-color: var(--color-main);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon::before {
+            top: 9px;
+            left: 0;
+            width: 20px;
+            height: 2px;
+        }
+
+        .faq-icon::after {
+            top: 0;
+            left: 9px;
+            width: 2px;
+            height: 20px;
+        }
+
+        .faq-item.active .faq-icon::after {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            background-color: #fff;
+        }
+
+        .faq-item.active .faq-answer {
+            transition: max-height 0.4s ease-in-out;
+        }
+
+        .faq-answer-inner {
+            padding: 0 30px 25px;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .contact-box {
+            background: #fff;
+            padding: 80px 40px;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-lead {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        .calendar-container {
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .calendar-label {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            display: inline-block;
+            background-color: var(--color-bg-light);
+            padding: 8px 20px;
+            border-radius: 4px;
+        }
+
+        .calendar-wrapper {
+            position: relative;
+            padding-top: 75%; /* アスペクト比4:3 */
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #EAEAEA;
+            background-color: var(--color-bg-light);
+        }
+
+        .calendar-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-line {
+            background-color: #00B900;
+            color: #fff;
+            border: 1px solid #00B900;
+        }
+
+        .btn-line:hover {
+            background-color: #fff;
+            color: #00B900;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-main);
+            color: #fff;
+            padding: 80px 0 40px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-info {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+        }
+
+        .footer-company {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+        }
+
+        .footer-company p {
+            margin-bottom: 15px;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .hero-title { font-size: 2.8rem; }
+            .discount-list { grid-template-columns: 1fr; }
+        }
+
+        @media screen and (max-width: 768px) {
+            :root { --header-height: 70px; }
+            section { padding: 80px 0; }
+            .section-title { font-size: 1.8rem; margin-bottom: 3rem; }
+            
+            /* Hamburger Menu */
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(44, 62, 80, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s;
+                z-index: 1000;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            .header-cta { display: none; }
+            
+            header.scrolled .hamburger span { background-color: var(--color-main); }
+            header.nav-open .hamburger span { background-color: #fff; }
+            header.nav-open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            header.nav-open .hamburger span:nth-child(2) { opacity: 0; }
+            header.nav-open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+            .hero-title { font-size: 2.2rem; }
+            .mission { padding: 100px 0; }
+            .mission-lead { font-size: 1.4rem; }
+            
+            .reason-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .reason-icon {
+                margin: 0 auto 25px;
+            }
+            
+            .calendar-wrapper { padding-top: 100%; /* スマホではカレンダーを縦長に */ }
+            .contact-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            
+            .footer-inner { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-inner">
+            <a href="#" class="logo">CLEANTO</a>
+            <div class="header-right">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#mission">想い</a></li>
+                        <li><a href="#reasons">選ばれる理由</a></li>
+                        <li><a href="#services">サービス・料金</a></li>
+                        <li><a href="#flow">ご利用の流れ</a></li>
+                        <li><a href="#faq">よくある質問</a></li>
+                    </ul>
+                </nav>
+                <a href="https://lin.ee/7X7NY4I" target="_blank" rel="noopener" class="header-cta">LINEで相談</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">その「綺麗」の先にある、<br>暮らしの安心を。</h1>
+            <p class="hero-subtitle">Premium House Cleaning Services</p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section id="mission" class="mission">
+        <div class="container fade-in">
+            <h2 class="mission-lead">見えない場所まで、美しく。</h2>
+            <p class="mission-text">
+                私がハウスクリーニングの世界に入って10年。<br>
+                数多くの現場を経験する中で辿り着いた答えは、「スピード」ではなく「徹底した品質」でした。<br><br>
+                表面的な綺麗さだけでなく、その先にあるお客様の「暮らしの安心」を守りたい。<br>
+                だからこそ、一つひとつの作業に職人の誇りを持ち、妥協のないサービスをお約束します。
+            </p>
+        </div>
+    </section>
+
+    <!-- Reasons -->
+    <section id="reasons" class="reasons bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">選ばれる3つの理由</h2>
+            <div class="reasons-grid">
+                <!-- Reason 1 -->
+                <div class="reason-card fade-in delay-1">
+                    <div class="reason-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l8.385-8.414a2 2 0 0 0-2.828-2.828l-8.385 8.414M12 15L3.615 6.586a2 2 0 0 0-2.828 2.828L12 15zm0 0v9m0 0l-3-3m3 3l3-3"/></svg>
+                    </div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">10年の確かな実績</h3>
+                        <p class="reason-desc">数多くのご家庭の汚れと向き合ってきた10年の経験。素材や汚れの種類を見極め、最適な洗剤と機材でアプローチします。蓄積されたノウハウが品質の証です。</p>
+                    </div>
+                </div>
+                <!-- Reason 2 -->
+                <div class="reason-card fade-in delay-2">
+                    <div class="reason-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">神奈川密着の迅速対応</h3>
+                        <p class="reason-desc">横須賀・横浜・湘南エリアを中心に、地域に根ざしたサービスを展開。移動時間を最小限に抑えることで、お客様のご都合に合わせた柔軟で迅速な対応を実現しています。</p>
+                    </div>
+                </div>
+                <!-- Reason 3 -->
+                <div class="reason-card fade-in delay-3">
+                    <div class="reason-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div class="reason-content">
+                        <h3 class="reason-title">徹底した品質へのこだわり</h3>
+                        <p class="reason-desc">効率やスピードを優先して作業の質を落とすことは決してありません。見えない内部の部品まで分解し、時間をかけてでも完璧な仕上がりを追求する職人魂が強みです。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Pricing -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title fade-in">サービス・料金</h2>
+            <div class="services-grid">
+                
+                <div class="service-card fade-in">
+                    <div class="service-info">
+                        <h3 class="service-name">エアコンクリーニング</h3>
+                        <div class="service-price-wrap">
+                            <div class="service-price-row">
+                                <span class="service-price-label">通常タイプ</span>
+                                <span class="service-price">10,000<span>円(税込)</span></span>
+                            </div>
+                            <div class="service-price-row">
+                                <span class="service-price-label">お掃除機能付き</span>
+                                <span class="service-price">16,000<span>円(税込)</span></span>
+                            </div>
+                        </div>
+                        <p class="service-time">作業目安：1.5時間〜2.5時間</p>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in delay-1">
+                    <div class="service-info">
+                        <h3 class="service-name">キッチンクリーニング</h3>
+                        <div class="service-price-wrap">
+                            <div class="service-price-row">
+                                <span class="service-price-label">一式</span>
+                                <span class="service-price">14,000<span>円(税込)</span></span>
+                            </div>
+                        </div>
+                        <p class="service-time">作業目安：2.5時間</p>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in delay-2">
+                    <div class="service-info">
+                        <h3 class="service-name">レンジフード（換気扇）</h3>
+                        <div class="service-price-wrap">
+                            <div class="service-price-row">
+                                <span class="service-price-label">分解洗浄</span>
+                                <span class="service-price">15,000<span>円(税込)</span></span>
+                            </div>
+                        </div>
+                        <p class="service-time">作業目安：3時間</p>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-info">
+                        <h3 class="service-name">浴室クリーニング</h3>
+                        <div class="service-price-wrap">
+                            <div class="service-price-row">
+                                <span class="service-price-label">一式</span>
+                                <span class="service-price">15,000<span>円(税込)</span></span>
+                            </div>
+                        </div>
+                        <p class="service-time">作業目安：3時間</p>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in delay-1">
+                    <div class="service-info">
+                        <h3 class="service-name">洗面台クリーニング</h3>
+                        <div class="service-price-wrap">
+                            <div class="service-price-row">
+                                <span class="service-price-label">一式</span>
+                                <span class="service-price">10,000<span>円(税込)</span></span>
+                            </div>
+                        </div>
+                        <p class="service-time">作業目安：1時間</p>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in delay-2">
+                    <div class="service-info">
+                        <h3 class="service-name">トイレクリーニング</h3>
+                        <div class="service-price-wrap">
+                            <div class="service-price-row">
+                                <span class="service-price-label">一式</span>
+                                <span class="service-price">10,000<span>円(税込)</span></span>
+                            </div>
+                        </div>
+                        <p class="service-time">作業目安：1時間</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discount Banner -->
+            <div class="discount-banner fade-in">
+                <h3 class="discount-title">Special Discount</h3>
+                <div class="discount-list">
+                    <div class="discount-item">
+                        <h4>複数台割引（エアコン）</h4>
+                        <p>エアコンクリーニングを2台以上ご依頼の場合、<br><strong>2台目以降 1台につき 2,000円割引</strong>いたします。</p>
+                    </div>
+                    <div class="discount-item">
+                        <h4>水回りセット割引</h4>
+                        <p>トイレ・洗面台を、浴室やキッチン等の他の水回りとセットでご依頼の場合、<br><strong>一か所につき 2,000円割引</strong>いたします。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section id="flow" class="flow bg-light">
+        <div class="container">
+            <h2 class="section-title fade-in">ご利用の流れ</h2>
+            <div class="flow-container">
+                
+                <div class="flow-step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">お問い合わせ</h3>
+                        <p class="step-desc">Webフォーム、または公式LINEよりお気軽にご連絡ください。ご希望の清掃箇所や日時をお伺いいたします。</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step fade-in delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">お見積り・内容確認</h3>
+                        <p class="step-desc">LINEにて汚れの状況がわかるお写真をお送りいただければ、事前により正確なお見積りをご提示可能です。金額にご納得いただけましたら次へ進みます。</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step fade-in delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">作業</h3>
+                        <p class="step-desc">ご予約日時にご自宅へ伺い、丁寧にクリーニングを実施いたします。作業前後の状態をお客様と一緒に確認いたします。</p>
+                    </div>
+                </div>
+                
+                <div class="flow-step fade-in delay-3">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">仕上がり確認・お支払い</h3>
+                        <p class="step-desc">作業完了後、仕上がりをご確認いただき問題がなければお支払いとなります。※今後のサービス向上のため、アンケート等をお願いする場合がございます。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title fade-in">よくある質問</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        当日、追加料金が発生することはありますか？
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <br>基本的にお見積りした金額から追加料金が発生することはございません。ただし、当日お客様からのご要望で清掃箇所を追加される場合や、事前にお伺いしていた状況（お掃除機能付きエアコンかどうか等）と大きく異なる場合は、作業前にご相談の上、金額を変更させていただく場合がございます。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in delay-1">
+                    <div class="faq-question">
+                        作業中は家にいなければいけませんか？
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <br>作業開始前と作業完了後のご確認時には必ずお立ち会いをお願いしておりますが、作業中の外出は可能です。外出される際と戻られる際にお声がけいただければ問題ございません。貴重品の管理等は事前にお願いいたします。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in delay-2">
+                    <div class="faq-question">
+                        汚れがひどい場合、落ちないこともありますか？
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <br>プロの技術と専用洗剤で可能な限り汚れを落としますが、経年劣化による素材の変色や、深く染み込んでしまったカビ・サビなどは、完全に落としきれない場合がございます。事前のお見積りや作業前の確認時に、丁寧にリスクをご説明させていただきます。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact bg-light">
+        <div class="container fade-in">
+            <h2 class="section-title">ご予約・お問い合わせ</h2>
+            <div class="contact-box">
+                <p class="contact-lead">
+                    お部屋の汚れに関するお悩み、お気軽にご相談ください。<br>
+                    心を込めて、美しく仕上げます。
+                </p>
+                
+                <!-- カレンダー埋め込みエリア -->
+                <div class="calendar-container">
+                    <div class="calendar-label">🗓️ 空き状況の目安（随時更新）</div>
+                    <div class="calendar-wrapper">
+                        <!-- Googleカレンダー埋め込み（レスポンシブ対応） -->
+                        <iframe src="https://calendar.google.com/calendar/embed?src=info.cleanto%40gmail.com&ctz=Asia%2FTokyo" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" frameborder="0" scrolling="no" title="Google Calendar"></iframe>
+                    </div>
+                </div>
+
+                <div class="contact-buttons">
+                    <a href="https://forms.gle/afbV6HZvLZi8jYCP9" target="_blank" rel="noopener" class="btn btn-main">Googleフォームで予約</a>
+                    <a href="https://lin.ee/7X7NY4I" target="_blank" rel="noopener" class="btn btn-line">公式LINEで写真見積もり</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <a href="#" class="footer-logo">CLEANTO</a>
+                    <p class="footer-desc">
+                        その「綺麗」の先にある、暮らしの安心を。<br>
+                        神奈川県を中心に、妥協のない高品質なハウスクリーニングをご提供します。
+                    </p>
+                </div>
+                <div class="footer-company">
+                    <p><strong>営業時間</strong>：<br>
+                    月〜木 9:00 - 18:00<br>
+                    金曜日 9:00 - 15:00<br>
+                    土日祝 休み</p>
+                    <p><strong>対応エリア</strong>：横須賀市・横浜市・湘南エリア周辺</p>
+                    <p><strong>運営</strong>：CLEANTO（クレント）</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 CLEANTO All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for fade-in animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Hamburger Menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const links = document.querySelectorAll('.nav-links a');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                header.classList.toggle('nav-open');
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    header.classList.remove('nav-open');
+                });
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                        }
+                    });
+
+                    // Toggle current item
+                    item.classList.toggle('active');
+                    const answer = item.querySelector('.faq-answer');
+                    if (item.classList.contains('active')) {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
